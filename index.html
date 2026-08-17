@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="INZZOUT — Luxury streetwear born from the streets. Not just a brand. A movement." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>INZZOUT — Luxury Streetwear</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@700&family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- GTA UI OVERLAYS -->
+  <div id="page-load-bar"></div>
+  <div id="police-alert"></div>
+  <div id="cinematic-top"></div>
+  <div id="cinematic-bottom"></div>
+
+  <!-- WASTED SCREEN -->
+  <div id="wasted-screen">
+    <div class="wasted-text">WASTED</div>
+  </div>
+
+  <!-- MISSION PASSED -->
+  <div id="mission-passed">
+    <div class="mp-text">MISSION PASSED</div>
+    <div class="mp-sub">ITEM ADDED TO WARDROBE</div>
+  </div>
+
+  <!-- WANTED LEVEL HUD -->
+  <div id="wanted-hud">
+    <span class="wanted-label">WANTED</span>
+    <div class="wanted-stars">
+      <div class="wanted-star" id="star-1"></div>
+      <div class="wanted-star" id="star-2"></div>
+      <div class="wanted-star" id="star-3"></div>
+      <div class="wanted-star" id="star-4"></div>
+      <div class="wanted-star" id="star-5"></div>
+    </div>
+  </div>
+
+  <!-- RADIO HUD -->
+  <div id="radio-hud">
+    <div class="radio-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M1 6a2 2 0 012-2h18a2 2 0 012 2v14a2 2 0 01-2 2H3a2 2 0 01-2-2V6zm10 9a3 3 0 110-6 3 3 0 010 6zm6.5-5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/></svg>
+    </div>
+    <div class="radio-info">
+      <div class="radio-station" id="radio-station-name">INZZ FM</div>
+      <div class="radio-track" id="radio-track-name">PHANTOM — The Streets</div>
+    </div>
+  </div>
+
+  <!-- MINIMAP HUD -->
+  <div id="minimap-hud">
+    <canvas id="minimap-canvas" width="140" height="140"></canvas>
+    <div class="minimap-player-dot"></div>
+    <div class="minimap-label">LOS INZZOUT</div>
+  </div>
+
+  <!-- HEALTH HUD -->
+  <div id="health-hud">
+    <div class="hud-bar-row">
+      <span class="hud-bar-label">HP</span>
+      <div class="hud-bar-track"><div class="hud-bar-fill health" id="health-bar"></div></div>
+    </div>
+    <div class="hud-bar-row">
+      <span class="hud-bar-label">AR</span>
+      <div class="hud-bar-track"><div class="hud-bar-fill armor" id="armor-bar"></div></div>
+    </div>
+  </div>
+
+  <!-- GTA TOAST CONTAINER -->
+  <div id="gta-toast-container"></div>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor" class="cursor"></div>
+  <div id="cursor-trail" class="cursor-trail"></div>
+
+  <!-- PRELOADER -->
+  <div id="preloader" class="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-emblem">
+        <svg viewBox="0 0 200 200" class="emblem-svg">
+          <defs>
+            <filter id="glow-filter">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#c0392b" stroke-width="1.5" opacity="0.6"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#c0392b" stroke-width="0.5" opacity="0.3"/>
+          <rect x="88" y="55" width="24" height="4" fill="#c0392b"/>
+          <rect x="96" y="59" width="8" height="82" fill="#c0392b"/>
+          <rect x="88" y="141" width="24" height="4" fill="#c0392b"/>
+          <line x1="100" y1="10" x2="100" y2="22" stroke="#c0392b" stroke-width="1.5" opacity="0.5"/>
+          <line x1="100" y1="178" x2="100" y2="190" stroke="#c0392b" stroke-width="1.5" opacity="0.5"/>
+          <line x1="10" y1="100" x2="22" y2="100" stroke="#c0392b" stroke-width="1.5" opacity="0.5"/>
+          <line x1="178" y1="100" x2="190" y2="100" stroke="#c0392b" stroke-width="1.5" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="preloader-text">INZZOUT</div>
+      <div class="preloader-sub">EST. MMXXIV</div>
+      <div class="preloader-bar"><div class="preloader-fill" id="preloader-fill"></div></div>
+    </div>
+    <canvas id="grain-canvas" class="grain-canvas"></canvas>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-logo">
+      <span class="nav-logo-text">INZZOUT</span>
+      <span class="nav-logo-dot"></span>
+    </div>
+    <div class="nav-links">
+      <a href="#collections" class="nav-link" data-text="COLLECTIONS">COLLECTIONS</a>
+      <a href="#products" class="nav-link" data-text="SHOP">SHOP</a>
+      <a href="#lookbook" class="nav-link" data-text="LOOKBOOK">LOOKBOOK</a>
+      <a href="#story" class="nav-link" data-text="STORY">STORY</a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn" id="search-btn" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="nav-icon-btn" id="cart-btn" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <div class="mobile-overlay" id="mobile-overlay">
+    <canvas id="mobile-grain" class="grain-canvas"></canvas>
+    <button class="mobile-close" id="mobile-close" aria-label="Close">&#x2715;</button>
+    <nav class="mobile-nav">
+      <a href="#collections" class="mobile-nav-link" data-index="0">COLLECTIONS</a>
+      <a href="#products" class="mobile-nav-link" data-index="1">SHOP</a>
+      <a href="#lookbook" class="mobile-nav-link" data-index="2">LOOKBOOK</a>
+      <a href="#story" class="mobile-nav-link" data-index="3">STORY</a>
+    </nav>
+    <div class="mobile-nav-footer"><p>@INZZOUT</p></div>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <canvas id="hero-canvas" class="hero-canvas"></canvas>
+    <div class="hero-parallax" id="hero-parallax">
+      <div class="parallax-layer skyline-layer" data-depth="0.1">
+        <canvas id="skyline-canvas" class="skyline-canvas"></canvas>
+      </div>
+      <div class="parallax-layer rain-layer" data-depth="0.2">
+        <canvas id="rain-canvas" class="rain-canvas"></canvas>
+      </div>
+      <div class="parallax-layer smoke-layer" data-depth="0.05">
+        <canvas id="smoke-canvas" class="smoke-canvas"></canvas>
+      </div>
+      <div class="hero-red-reflection" id="hero-reflection"></div>
+      <div class="parallax-layer car-layer" data-depth="0.15">
+        <div class="car-silhouette"></div>
+      </div>
+      <div class="parallax-layer model-layer" data-depth="0.25">
+        <div class="model-silhouette"></div>
+      </div>
+    </div>
+    <div class="hero-content" id="hero-content">
+      <div class="hero-badge">NEW DROP &mdash; SS 2024</div>
+      <h1 class="hero-headline" id="hero-headline" aria-label="BORN IN THE STREETS">
+        <span class="headline-line glitch" id="hl1" data-text=""></span>
+        <span class="headline-line accent" id="hl2"></span>
+        <span class="headline-line" id="hl3"></span>
+      </h1>
+      <p class="hero-sub">Luxury streetwear for those who move different.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary magnetic" id="shop-btn" data-text="SHOP NOW">
+          <span class="btn-text">SHOP NOW</span>
+          <span class="btn-arrow">&#8594;</span>
+          <span class="btn-glow"></span>
+        </button>
+        <button class="btn btn-secondary magnetic" id="lookbook-btn" data-text="LOOKBOOK">
+          <span class="btn-text">LOOKBOOK</span>
+          <span class="btn-arrow">&#8594;</span>
+          <span class="btn-glow"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- GTA Location UI -->
+    <div class="hero-gta-ui">
+      <span class="hero-coord" id="hero-coord">N 34.0522&#176; W 118.2437&#176;</span>
+      <span class="hero-location">LOS INZZOUT</span>
+      <span class="hero-district">FASHION DISTRICT &mdash; SECTOR 7</span>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- MARQUEE STRIP -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span>LUXURY STREETWEAR</span><span class="sep">&#10022;</span>
+      <span>LIMITED DROPS</span><span class="sep">&#10022;</span>
+      <span>NOT JUST A BRAND</span><span class="sep">&#10022;</span>
+      <span>BORN IN THE STREETS</span><span class="sep">&#10022;</span>
+      <span>SS 2024 COLLECTION</span><span class="sep">&#10022;</span>
+      <span>INZZOUT</span><span class="sep">&#10022;</span>
+      <span>LUXURY STREETWEAR</span><span class="sep">&#10022;</span>
+      <span>LIMITED DROPS</span><span class="sep">&#10022;</span>
+      <span>NOT JUST A BRAND</span><span class="sep">&#10022;</span>
+      <span>BORN IN THE STREETS</span><span class="sep">&#10022;</span>
+      <span>SS 2024 COLLECTION</span><span class="sep">&#10022;</span>
+      <span>INZZOUT</span><span class="sep">&#10022;</span>
+    </div>
+  </div>
+
+  <!-- COLLECTIONS -->
+  <section id="collections" class="collections section">
+    <div class="section-header reveal-up">
+      <span class="section-label">&mdash; COLLECTIONS</span>
+      <h2 class="section-title">DROP SEASON</h2>
+    </div>
+    <div class="collections-grid">
+      <article class="collection-card reveal-up" data-delay="0" id="col-1">
+        <div class="card-media">
+          <img src="assets/collections/phantom_series.jpg" alt="Phantom Series" class="card-bg-img" loading="lazy" />
+          <div class="card-overlay"></div>
+          <div class="card-spotlight"></div>
+          <div class="card-badge">LIMITED DROP</div>
+        </div>
+        <div class="card-info">
+          <span class="card-season">SS 2024</span>
+          <h3 class="card-title">PHANTOM SERIES</h3>
+          <p class="card-desc">Darkness engineered into fabric.</p>
+          <button class="card-cta btn btn-secondary magnetic"><span class="btn-text">ADD TO CART</span><span class="btn-arrow">&#8594;</span><span class="btn-glow"></span></button>
+        </div>
+      </article>
+      <article class="collection-card collection-card--tall reveal-up" data-delay="100" id="col-2">
+        <div class="card-media">
+          <img src="assets/collections/noir_division.jpg" alt="Noir Division" class="card-bg-img" loading="lazy" />
+          <div class="card-overlay"></div>
+          <div class="card-spotlight"></div>
+          <div class="card-badge new">NEW ARRIVAL</div>
+        </div>
+        <div class="card-info">
+          <span class="card-season">AW 2024</span>
+          <h3 class="card-title">NOIR DIVISION</h3>
+          <p class="card-desc">Where the streets meet couture.</p>
+          <button class="card-cta btn btn-secondary magnetic"><span class="btn-text">ADD TO CART</span><span class="btn-arrow">&#8594;</span><span class="btn-glow"></span></button>
+        </div>
+      </article>
+      <article class="collection-card reveal-up" data-delay="200" id="col-3">
+        <div class="card-media">
+          <img src="assets/collections/blood_lines.jpg" alt="Blood Lines" class="card-bg-img" loading="lazy" />
+          <div class="card-overlay"></div>
+          <div class="card-spotlight"></div>
+          <div class="card-badge sold">SOLD OUT</div>
+        </div>
+        <div class="card-info">
+          <span class="card-season">FW 2023</span>
+          <h3 class="card-title">BLOOD LINES</h3>
+          <p class="card-desc">The drop that changed everything.</p>
+          <button class="card-cta btn btn-secondary magnetic"><span class="btn-text">WAITLIST</span><span class="btn-arrow">&#8594;</span><span class="btn-glow"></span></button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PRODUCT SHOWCASE -->
+  <section id="products" class="products section">
+    <div class="section-header reveal-up">
+      <span class="section-label">&mdash; PRODUCTS</span>
+      <h2 class="section-title">SHOP THE DROP</h2>
+    </div>
+    <div class="product-showcase">
+      <div class="product-3d reveal-up" id="product-3d">
+        <div class="product-stage">
+          <canvas id="product-canvas" class="product-canvas"></canvas>
+          <div class="product-glow-ring"></div>
+        </div>
+        <div class="product-controls">
+          <div class="color-picker">
+            <span class="control-label">COLOR</span>
+            <div class="color-swatches">
+              <button class="swatch active" data-color="#0a0a0a" style="background:#0a0a0a" id="swatch-black" aria-label="Black"></button>
+              <button class="swatch" data-color="#1a1a2e" style="background:#1a1a2e" id="swatch-navy" aria-label="Navy"></button>
+              <button class="swatch" data-color="#2c2c2c" style="background:#2c2c2c" id="swatch-charcoal" aria-label="Charcoal"></button>
+              <button class="swatch" data-color="#c0392b" style="background:#c0392b" id="swatch-crimson" aria-label="Crimson"></button>
+            </div>
+          </div>
+          <div class="size-picker">
+            <span class="control-label">SIZE</span>
+            <div class="size-options">
+              <button class="size-btn" id="size-xs">XS</button>
+              <button class="size-btn active" id="size-s">S</button>
+              <button class="size-btn" id="size-m">M</button>
+              <button class="size-btn" id="size-l">L</button>
+              <button class="size-btn" id="size-xl">XL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-info reveal-up" data-delay="150">
+        <div class="product-badge">LIMITED DROP &mdash; 47 LEFT</div>
+        <h3 class="product-name">PHANTOM OVERSIZED HOODIE</h3>
+        <p class="product-price">$380 <span class="product-orig">$520</span></p>
+        <p class="product-desc">Constructed from 600gsm brushed cotton fleece. French terry interior. Dropped shoulders, oversized silhouette. The streets deserve better.</p>
+        <div class="product-features">
+          <span class="feature-tag">HEAVYWEIGHT</span>
+          <span class="feature-tag">OVERSIZED FIT</span>
+          <span class="feature-tag">600GSM</span>
+        </div>
+        <button class="btn btn-primary magnetic full-width" id="add-to-cart" data-text="ADD TO CART">
+          <span class="btn-text">ADD TO CART</span>
+          <span class="btn-arrow">&#8594;</span>
+          <span class="btn-glow"></span>
+        </button>
+        <div class="product-meta">
+          <span>Free shipping on orders over $200</span>
+          <span>Delivered in 3&ndash;5 business days</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Carousel -->
+    <div class="carousel-wrapper reveal-up" data-delay="200">
+      <div class="carousel-header">
+        <h3 class="carousel-title">MORE FROM THE DROP</h3>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="carousel-prev" aria-label="Previous">&#8592;</button>
+          <button class="carousel-btn" id="carousel-next" aria-label="Next">&#8594;</button>
+        </div>
+      </div>
+      <div class="carousel-track-wrapper" id="carousel-track-wrapper">
+        <div class="carousel-track" id="carousel-track"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOOKBOOK -->
+  <section id="lookbook" class="lookbook section">
+    <div class="lookbook-header reveal-up">
+      <span class="section-label">&mdash; LOOKBOOK</span>
+      <h2 class="section-title">CHAPTER ONE</h2>
+    </div>
+    <div class="lookbook-slides" id="lookbook-slides">
+      <div class="lookbook-slide active" id="lb-slide-0">
+        <canvas class="lb-canvas" data-scene="0"></canvas>
+        <div class="lb-overlay"></div>
+        <div class="lb-content">
+          <span class="lb-num">01 / 04</span>
+          <h3 class="lb-title">THE PHANTOM</h3>
+          <p class="lb-sub">Control in black.</p>
+        </div>
+      </div>
+      <div class="lookbook-slide" id="lb-slide-1">
+        <canvas class="lb-canvas" data-scene="1"></canvas>
+        <div class="lb-overlay"></div>
+        <div class="lb-content">
+          <span class="lb-num">02 / 04</span>
+          <h3 class="lb-title">NOIR STREETS</h3>
+          <p class="lb-sub">After hours luxury.</p>
+        </div>
+      </div>
+      <div class="lookbook-slide" id="lb-slide-2">
+        <canvas class="lb-canvas" data-scene="2"></canvas>
+        <div class="lb-overlay"></div>
+        <div class="lb-content">
+          <span class="lb-num">03 / 04</span>
+          <h3 class="lb-title">RED BLOOD</h3>
+          <p class="lb-sub">The color of the streets.</p>
+        </div>
+      </div>
+      <div class="lookbook-slide" id="lb-slide-3">
+        <canvas class="lb-canvas" data-scene="3"></canvas>
+        <div class="lb-overlay"></div>
+        <div class="lb-content">
+          <span class="lb-num">04 / 04</span>
+          <h3 class="lb-title">MOVEMENT</h3>
+          <p class="lb-sub">Born to move different.</p>
+        </div>
+      </div>
+    </div>
+    <div class="lookbook-nav">
+      <button class="lb-nav-btn active" data-index="0" id="lb-nav-0"></button>
+      <button class="lb-nav-btn" data-index="1" id="lb-nav-1"></button>
+      <button class="lb-nav-btn" data-index="2" id="lb-nav-2"></button>
+      <button class="lb-nav-btn" data-index="3" id="lb-nav-3"></button>
+    </div>
+    <div class="lb-flash" id="lb-flash"></div>
+  </section>
+
+  <!-- BRAND STORY -->
+  <section id="story" class="story section">
+    <canvas id="smoke-bg-canvas" class="smoke-bg-canvas"></canvas>
+    <div class="story-content">
+      <div class="story-label reveal-up">&mdash; OUR STORY</div>
+      <div class="story-big reveal-up">NOT JUST A BRAND.</div>
+      <div class="story-movement reveal-up">
+        <span class="movement-word" id="movement-word">MOVEMENT</span>
+      </div>
+      <p class="story-body reveal-up">
+        INZZOUT was born at the intersection of luxury and the streets.<br>
+        We don&apos;t follow trends. We set the standard.<br>
+        Every piece is a statement. Every drop is a chapter.
+      </p>
+      <button class="btn btn-primary magnetic reveal-up" data-text="OUR STORY">
+        <span class="btn-text">OUR STORY</span>
+        <span class="btn-arrow">&#8594;</span>
+        <span class="btn-glow"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="reviews section">
+    <div class="section-header reveal-up">
+      <span class="section-label">&mdash; REVIEWS</span>
+      <h2 class="section-title">WHAT THEY SAY</h2>
+    </div>
+    <div class="reviews-grid">
+      <article class="review-card reveal-up" data-delay="0">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"The Phantom hoodie is the most premium piece I've ever worn. The weight, the fit, the fabric — everything feels expensive."</p>
+        <div class="review-author">
+          <div class="review-avatar" style="--hue:0">M</div>
+          <div>
+            <span class="review-name">Marcus T.</span>
+            <span class="review-loc">Los Angeles, CA</span>
+          </div>
+        </div>
+      </article>
+      <article class="review-card reveal-up" data-delay="100">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"INZZOUT is what happens when the streets finally get the luxury brand they deserve. Nothing comes close."</p>
+        <div class="review-author">
+          <div class="review-avatar" style="--hue:200">J</div>
+          <div>
+            <span class="review-name">Jordan K.</span>
+            <span class="review-loc">New York, NY</span>
+          </div>
+        </div>
+      </article>
+      <article class="review-card reveal-up" data-delay="200">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"The Blood Lines collection was art. I've worn it twice and both times someone stopped me to ask where it's from."</p>
+        <div class="review-author">
+          <div class="review-avatar" style="--hue:120">A</div>
+          <div>
+            <span class="review-name">Andre S.</span>
+            <span class="review-loc">Atlanta, GA</span>
+          </div>
+        </div>
+      </article>
+      <article class="review-card reveal-up" data-delay="300">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"Best brand alive right now. The details, the quality, the whole aesthetic — it's on another level. INZZOUT is a lifestyle."</p>
+        <div class="review-author">
+          <div class="review-avatar" style="--hue:280">R</div>
+          <div>
+            <span class="review-name">Riana L.</span>
+            <span class="review-loc">Miami, FL</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter" class="newsletter section">
+    <div class="newsletter-inner reveal-up">
+      <span class="section-label">&mdash; GET ACCESS</span>
+      <h2 class="newsletter-title">JOIN THE MOVEMENT</h2>
+      <p class="newsletter-sub">Early access to drops. Exclusive content. Members only.</p>
+      <form class="newsletter-form" id="newsletter-form" novalidate>
+        <div class="input-wrapper">
+          <input type="email" class="newsletter-input" id="newsletter-email" placeholder="YOUR EMAIL ADDRESS" autocomplete="email" />
+          <button type="submit" class="newsletter-submit magnetic" id="newsletter-submit" aria-label="Subscribe">
+            <span class="submit-arrow">&#8594;</span>
+          </button>
+        </div>
+        <p class="newsletter-disclaimer">No spam. Ever. Unsubscribe anytime.</p>
+      </form>
+      <div class="newsletter-success" id="newsletter-success">
+        <span class="success-icon">&#10003;</span>
+        <span>You're in. Welcome to the movement.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">INZZOUT</div>
+        <p class="footer-tagline">Not just a brand. A movement.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon" id="social-ig" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          </a>
+          <a href="#" class="social-icon" id="social-tt" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.93a8.17 8.17 0 004.78 1.52V7.01a4.85 4.85 0 01-1.01-.32z"/></svg>
+          </a>
+          <a href="#" class="social-icon" id="social-x" aria-label="X">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" class="social-icon" id="social-yt" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23 7s-.3-1.9-1.2-2.7c-1.1-1.2-2.4-1.2-3-1.3C16.2 3 12 3 12 3s-4.2 0-6.8.3c-.6.1-1.9.1-3 1.3C1.3 5.4 1 7 1 7S.7 9.1.7 11.2v1.9c0 2.1.3 4.2.3 4.2s.3 1.9 1.2 2.7c1.1 1.2 2.6 1.1 3.3 1.2C7.2 21.3 12 21.3 12 21.3s4.2 0 6.8-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.7 1.2-2.7s.3-2.1.3-4.2v-1.9C23.3 9.1 23 7 23 7zm-13.5 8.5v-7.3l8.1 3.7-8.1 3.6z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links-group">
+        <h4>SHOP</h4>
+        <a href="#">New Arrivals</a>
+        <a href="#">Collections</a>
+        <a href="#">Hoodies</a>
+        <a href="#">Cargo Pants</a>
+        <a href="#">Accessories</a>
+      </div>
+      <div class="footer-links-group">
+        <h4>BRAND</h4>
+        <a href="#">Our Story</a>
+        <a href="#">Lookbook</a>
+        <a href="#">Press</a>
+        <a href="#">Collaborations</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-links-group">
+        <h4>SUPPORT</h4>
+        <a href="#">Size Guide</a>
+        <a href="#">Shipping &amp; Returns</a>
+        <a href="#">Track Order</a>
+        <a href="#">FAQ</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 INZZOUT. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART DRAWER -->
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>YOUR CART</h3>
+      <button class="cart-close" id="cart-close" aria-label="Close cart">&#x2715;</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <div class="cart-empty">
+        <p>Your cart is empty.</p>
+        <button class="btn btn-secondary magnetic">SHOP NOW &#8594;</button>
+      </div>
+    </div>
+    <div class="cart-footer" id="cart-footer" style="display:none">
+      <div class="cart-total">
+        <span>TOTAL</span>
+        <span id="cart-total-price">$0</span>
+      </div>
+      <button class="btn btn-primary magnetic full-width" id="checkout-btn">
+        <span class="btn-text">CHECKOUT</span>
+        <span class="btn-arrow">&#8594;</span>
+        <span class="btn-glow"></span>
+      </button>
+    </div>
+  </div>
+  <div class="cart-overlay" id="cart-overlay"></div>
+
+  <div class="ripple-container" id="ripple-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
