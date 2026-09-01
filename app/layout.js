@@ -1,5 +1,34 @@
 import './globals.css';
 import { CartProvider } from '@/context/CartContext';
+import { Bebas_Neue, Oswald, Inter, Space_Grotesk } from 'next/font/google';
+
+const bebasNeue = Bebas_Neue({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-bebas',
+  display: 'swap',
+});
+
+const oswald = Oswald({
+  weight: '700',
+  subsets: ['latin'],
+  variable: '--font-oswald',
+  display: 'swap',
+});
+
+const inter = Inter({
+  weight: ['300', '400', '500', '600', '700', '900'],
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const spaceGrotesk = Space_Grotesk({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  variable: '--font-space',
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'INZZOUT — Luxury Streetwear',
@@ -11,18 +40,16 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  themeColor: '#0a0a0a',
+};
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <meta name="theme-color" content="#0a0a0a" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@700&family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="en"
+      className={`${bebasNeue.variable} ${oswald.variable} ${inter.variable} ${spaceGrotesk.variable}`}
+    >
       <body>
         <CartProvider>
           {children}

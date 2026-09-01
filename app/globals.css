@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+/* Fonts loaded via next/font/google in layout.js */
 
 /* ═══════════════════════════════════════════════════════════════
    INZZOUT — LUXURY STREETWEAR
@@ -25,9 +25,9 @@
   --red-deep:     #8b1a14;
   --glass:        rgba(255,255,255,0.04);
   --glass-border: rgba(255,255,255,0.08);
-  --font-head:    'Bebas Neue', sans-serif;
-  --font-body:    'Inter', sans-serif;
-  --font-accent:  'Space Grotesk', sans-serif;
+  --font-head:    var(--font-bebas), 'Bebas Neue', sans-serif;
+  --font-body:    var(--font-inter), 'Inter', sans-serif;
+  --font-accent:  var(--font-space), 'Space Grotesk', sans-serif;
   --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
   --transition:   0.4s var(--ease-out);
