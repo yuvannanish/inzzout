@@ -458,9 +458,9 @@ function initHeroParallax() {
 /* ─── Hero Headline typewriter ──────────────────────────────── */
 function initHeroHeadline() {
   const lines = [
-    { el: qs('#hl1'), text: 'BORN IN' },
-    { el: qs('#hl2'), text: 'THE' },
-    { el: qs('#hl3'), text: 'STREETS.' },
+    { el: qs('#hl1'), text: 'REBEL WITH' },
+    { el: qs('#hl2'), text: '' },
+    { el: qs('#hl3'), text: 'PURPOSE.' },
   ];
 
   let delay = 600;

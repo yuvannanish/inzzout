@@ -1,0 +1,181 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "PHANTOM OVERSIZED HOODIE",
+      "price": 380,
+      "originalPrice": 520,
+      "collection": "Phantom Series",
+      "description": "Constructed from 600gsm brushed cotton fleece. French terry interior. Dropped shoulders, oversized silhouette. The streets deserve better.",
+      "stock": 47,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "#0a0a0a",
+        "#1a1a2e",
+        "#2c2c2c",
+        "#c0392b"
+      ],
+      "imageUrl": "/assets/products/shadow_crew.jpg",
+      "badge": "LIMITED DROP"
+    },
+    {
+      "id": 2,
+      "name": "PHANTOM TEE",
+      "price": 120,
+      "originalPrice": 160,
+      "collection": "Phantom Series",
+      "description": "Heavyweight 240gsm jersey cotton. Pre-washed for perfect drape. The foundation piece of the Phantom Series.",
+      "stock": 80,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "#0a0a0a",
+        "#2c2c2c"
+      ],
+      "imageUrl": "/assets/products/phantom_tee.jpg",
+      "badge": "LIMITED DROP"
+    },
+    {
+      "id": 3,
+      "name": "NOIR CARGO PANTS",
+      "price": 280,
+      "originalPrice": 380,
+      "collection": "Noir Division",
+      "description": "Technical ripstop cargo. Articulated knees, 8-pocket system. Built for the streets, refined for luxury.",
+      "stock": 35,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "#0a0a0a",
+        "#2c2c2c"
+      ],
+      "imageUrl": "/assets/products/cargo_pants.jpg",
+      "badge": "NEW ARRIVAL"
+    },
+    {
+      "id": 4,
+      "name": "BLOOD JACKET",
+      "price": 520,
+      "originalPrice": 720,
+      "collection": "Blood Lines",
+      "description": "Waxed cotton shell. Quilted lining. The statement piece from the collection that changed everything.",
+      "stock": 0,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "#0a0a0a",
+        "#c0392b"
+      ],
+      "imageUrl": "/assets/products/blood_jacket.jpg",
+      "badge": "SOLD OUT"
+    },
+    {
+      "id": 5,
+      "name": "NOIR CAP",
+      "price": 95,
+      "originalPrice": 120,
+      "collection": "Noir Division",
+      "description": "Structured 6-panel cap. Embroidered INZZOUT wordmark. Adjustable leather strap.",
+      "stock": 60,
+      "sizes": [
+        "ONE SIZE"
+      ],
+      "colors": [
+        "#0a0a0a",
+        "#1a1a2e",
+        "#c0392b"
+      ],
+      "imageUrl": "/assets/products/noir_cap.jpg",
+      "badge": "NEW ARRIVAL"
+    },
+    {
+      "id": 6,
+      "name": "MOVEMENT JOGGERS",
+      "price": 195,
+      "originalPrice": 260,
+      "collection": "Phantom Series",
+      "description": "Ultra-soft 380gsm terry. Tapered fit. The kind of comfort you wear outside.",
+      "stock": 55,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "#0a0a0a",
+        "#2c2c2c"
+      ],
+      "imageUrl": "/assets/products/movement_joggers.jpg",
+      "badge": "LIMITED DROP"
+    },
+    {
+      "id": 7,
+      "name": "PHANTOM VEST",
+      "price": 220,
+      "originalPrice": 295,
+      "collection": "Phantom Series",
+      "description": "Heavyweight puffer vest. Water-resistant shell. Street utility meets luxury warmth.",
+      "stock": 25,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "#0a0a0a",
+        "#1a1a2e"
+      ],
+      "imageUrl": "/assets/products/phantom_vest.jpg",
+      "badge": "LIMITED DROP"
+    },
+    {
+      "id": 8,
+      "name": "DARK SHORTS",
+      "price": 145,
+      "originalPrice": 190,
+      "collection": "Noir Division",
+      "description": "Relaxed-fit shorts in technical nylon. 7-inch inseam. Side cargo pockets. Built for summer streets.",
+      "stock": 70,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "#0a0a0a",
+        "#2c2c2c",
+        "#c0392b"
+      ],
+      "imageUrl": "/assets/products/dark_shorts.jpg",
+      "badge": "NEW ARRIVAL"
+    }
+  ],
+  "orders": [],
+  "subscribers": []
+}
