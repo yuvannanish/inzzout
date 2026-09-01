@@ -4,6 +4,11 @@ import { CartProvider } from '@/context/CartContext';
 export const metadata = {
   title: 'INZZOUT — Luxury Streetwear',
   description: 'INZZOUT — Luxury streetwear born from the streets. Not just a brand. A movement.',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.jpg',
+  },
 };
 
 export default function RootLayout({ children }) {
